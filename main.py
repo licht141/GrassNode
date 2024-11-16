@@ -59,9 +59,8 @@ async def send_auth(ws, device_id):
             "user_id": user_id,
             "user_agent": user_agent,
             "timestamp": timestamp,
-            "device_type": "extension",
-            "version": "4.26.2",
-            "extension_id": "lkbnfiajjmbhnfledhphioinpickokdi"
+            "device_type": "desktop",
+            "version": "4.28.2"
         }
     }
     await ws.send_str(json.dumps(auth_message))
@@ -110,8 +109,7 @@ async def connect(proxy=None):
                 async with session.ws_connect(url, headers={
                     "Pragma": "no-cache",
                     "Cache-Control": "no-cache",
-                    "User-Agent": user_agent,
-                    "Origin": "chrome-extension://lkbnfiajjmbhnfledhphioinpickokdi"
+                    "User-Agent": user_agent
                 }) as ws:
                     logger.info(f"Connected to WebSocket server {'with proxy: ' + proxy if proxy else 'without proxy'}")
                     await handle_messages(ws, device_id)
